@@ -10,6 +10,10 @@ Image ariel(const string& text1, const string& text2) {
   cout << "Ariel?" << endl;
   Image arielmeme("templates/ariel.jpg");
 
+  Geometry imageGeometry = arielmeme.size();
+  int imageWidth = imageGeometry.width();
+  int imageHeight = imageGeometry.height();
+  
   Color white("white");
   Color black("black");
 
@@ -28,7 +32,9 @@ Image ariel(const string& text1, const string& text2) {
   cout << "Text2: " << text2 << endl;
   cout << "Width: " << tm2.textWidth() << endl;
 
-  int mid = 200;
+  int mid = imageWidth / 2;
+  int top = 10;
+  int bottom = imageHeight - 45;
   int left1 = mid - (tm1.textWidth()/2);
   int left2 = mid - (tm2.textWidth()/2);
 
@@ -38,8 +44,8 @@ Image ariel(const string& text1, const string& text2) {
   stringstream offset1_string;
   stringstream offset2_string;
 
-  offset1_string << "+" << left1 << "+10";
-  offset2_string << "+" << left2 << "+365";
+  offset1_string << "+" << left1 << "+" << top << endl;
+  offset2_string << "+" << left2 << "+" << bottom << endl;
 
   cout << "Offset1: " << offset1_string.str() << endl;
   cout << "Offset2: " << offset2_string.str() << endl;
@@ -59,6 +65,10 @@ Image fry(const string& text1, const string& text2) {
   Color white("white");
   Color black("black");
 
+  Geometry imageGeometry = frymeme.size();
+  int imageWidth = imageGeometry.width();
+  int imageHeight = imageGeometry.height();
+
   frymeme.font("Helvetica-Bold");
   frymeme.fontPointsize(50);
   frymeme.fillColor(white);
@@ -74,15 +84,20 @@ Image fry(const string& text1, const string& text2) {
   cout << "Text2: " << text2 << endl;
   cout << "Width: " << tm2.textWidth() << endl;
 
-  int mid = 301;
+  int mid = imageWidth / 2;
+  int top = 10;
+  int bottom = imageHeight - 50;
   int left1 = mid - (tm1.textWidth()/2);
   int left2 = mid - (tm2.textWidth()/2);
+
+  left1 = (left1 >= 0 )? left1 : 0;
+  left2 = (left2 >= 0 )? left2 : 0;
 
   stringstream offset1_string;
   stringstream offset2_string;
 
-  offset1_string << "+" << left1 << "+10";
-  offset2_string << "+" << left2 << "+400";
+  offset1_string << "+" << left1 << "+" << top; 
+  offset2_string << "+" << left2 << "+" << bottom;
 
   cout << "Offset1: " << offset1_string.str() << endl;
   cout << "Offset2: " << offset2_string.str() << endl;
