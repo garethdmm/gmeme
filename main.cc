@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
   string text2("");
 
   if (argc < 4) {
-    cout << "Usage: gmeme {-fry|-ariel} top_text bottom_text" << endl;
+    cout << "Usage: gmeme {-fry|-ariel|-philosoraptor|-yuno} top_text bottom_text" << endl;
   }
 
   for (int i = 1; i < argc; i++) {
@@ -30,7 +30,13 @@ int main(int argc, char* argv[]) {
       } else if (argv[i][1] == 'a') {
         memetype = "ariel";
         cout << "Arielmeme!" << endl;
-      }
+      } else if (argv[i][1] == 'p') {
+        memetype = "philosoraptor";
+        cout << "Philosoraptor!" << endl;
+      } else if (argv[i][1] == 'y') {
+        memetype = "yuno";
+        cout << "Y U NO?" << endl;
+      } 
     } else { // handle text strings in here
       text1 = argv[i];
       cout << "text1: " << text1 << endl;
@@ -50,6 +56,14 @@ int main(int argc, char* argv[]) {
     Meme ariel("templates/ariel.jpg", text1, text2);
     Image arielImage = ariel.render();
     arielImage.write("ariel.png");
+  } else if (memetype == "philosoraptor") {
+    Meme philo("templates/philosoraptor.jpg", text1, text2);
+    Image philoImage = philo.render();
+    philoImage.write("philosoraptor.png");
+  } else if (memetype == "yuno") {
+    Meme yuno("templates/yuno.png", text1, text2);
+    Image yunoImage = yuno.render();
+    yunoImage.write("yuno.png");
   }
 
   return 1;
