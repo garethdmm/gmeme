@@ -11,6 +11,7 @@ using namespace Magick;
 
 int main(int argc, char* argv[]) {
   string memetype("");
+  string filetype("png");
   string text1("");
   string text2("");
 
@@ -24,7 +25,12 @@ int main(int argc, char* argv[]) {
     if (argv[i][0] == '-') { // handle all the control flags here
       cout << "Control: " << argv[i] << endl;
 
-      if (argv[i][1] == 'f') { // fry
+      if (argv[i][1] == 't') { // filetype
+        i++;
+        if (i < argc) {
+          filetype = string(argv[i]);
+        }
+      } else if (argv[i][1] == 'f') { // fry
         memetype = "fry";
         cout << "Frymeme!" << endl;
       } else if (argv[i][1] == 'a') {
@@ -51,19 +57,19 @@ int main(int argc, char* argv[]) {
   if (memetype == "fry") {
     Meme fry("templates/fry.png", text1, text2);
     Image fryImage = fry.render();
-    fryImage.write("fry.png");
+    fryImage.write("fry." + filetype);
   } else if (memetype == "ariel") {
     Meme ariel("templates/ariel.jpg", text1, text2);
     Image arielImage = ariel.render();
-    arielImage.write("ariel.png");
+    arielImage.write("ariel." + filetype);
   } else if (memetype == "philosoraptor") {
     Meme philo("templates/philosoraptor.jpg", text1, text2);
     Image philoImage = philo.render();
-    philoImage.write("philosoraptor.png");
+    philoImage.write("philosoraptor." + filetype);
   } else if (memetype == "yuno") {
     Meme yuno("templates/yuno.png", text1, text2);
     Image yunoImage = yuno.render();
-    yunoImage.write("yuno.png");
+    yunoImage.write("yuno." + filetype);
   }
 
   return 1;
