@@ -19,7 +19,7 @@ Image Meme::render() {
   int imageWidth = imageGeometry.width();
   int imageHeight = imageGeometry.height();
 
-  image.font("Helvetica-Bold");
+  image.font("Impact");
   image.fontPointsize(50);
   image.fillColor(white);
   image.strokeColor(black);
@@ -28,15 +28,9 @@ Image Meme::render() {
   image.fontTypeMetrics(text1, &tm1);
   image.fontTypeMetrics(text2, &tm2);
 
-  cout << "Text1: " << text1 << endl;
-  cout << "Width: " << tm1.textWidth() << endl;
-
-  cout << "Text2: " << text2 << endl;
-  cout << "Width: " << tm2.textWidth() << endl;
-
   int mid = imageWidth / 2;
-  int top = 10;
-  int bottom = imageHeight - 50;
+  int top = 0;
+  int bottom = imageHeight - 60;
   int left1 = mid - (tm1.textWidth()/2);
   int left2 = mid - (tm2.textWidth()/2);
 
@@ -48,9 +42,6 @@ Image Meme::render() {
 
   offset1_string << "+" << left1 << "+" << top; 
   offset2_string << "+" << left2 << "+" << bottom;
-
-  cout << "Offset1: " << offset1_string.str() << endl;
-  cout << "Offset2: " << offset2_string.str() << endl;
 
   Geometry text1_offset(offset1_string.str().c_str());
   Geometry text2_offset(offset2_string.str().c_str());

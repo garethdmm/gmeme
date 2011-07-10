@@ -20,11 +20,7 @@ int main(int argc, char* argv[]) {
   }
 
   for (int i = 1; i < argc; i++) {
-    cout << "Argv[ " << i << "]:" << argv[i] << endl;
-
     if (argv[i][0] == '-') { // handle all the control flags here
-      cout << "Control: " << argv[i] << endl;
-
       if (argv[i][1] == 't') { // filetype
         i++;
         if (i < argc) {
@@ -32,24 +28,20 @@ int main(int argc, char* argv[]) {
         }
       } else if (argv[i][1] == 'f') { // fry
         memetype = "fry";
-        cout << "Frymeme!" << endl;
       } else if (argv[i][1] == 'a') {
         memetype = "ariel";
-        cout << "Arielmeme!" << endl;
       } else if (argv[i][1] == 'p') {
         memetype = "philosoraptor";
-        cout << "Philosoraptor!" << endl;
       } else if (argv[i][1] == 'y') {
         memetype = "yuno";
-        cout << "Y U NO?" << endl;
-      } 
+      } else if (argv[i][1] == 'w') {
+        memetype = "anonwife";
+      }
     } else { // handle text strings in here
       text1 = argv[i];
-      cout << "text1: " << text1 << endl;
       if (i + 1 < argc) {
         i++;
         text2 = argv[i];
-        cout << "text2: " << text2 << endl;
       }
     }
   }
@@ -70,6 +62,10 @@ int main(int argc, char* argv[]) {
     Meme yuno("templates/yuno.png", text1, text2);
     Image yunoImage = yuno.render();
     yunoImage.write("yuno." + filetype);
+  } else if (memetype == "anonwife") {
+    Meme wife("templates/anonwife.jpg", text1, text2);
+    Image wifeImage = wife.render();
+    wifeImage.write("wife." + filetype); 
   }
 
   return 1;
