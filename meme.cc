@@ -7,7 +7,7 @@
 using namespace std;
 using namespace Magick;
 
-Meme::Meme(const string& filename, const string& text1, const string& text2): filename(filename), text1(text1), text2(text2) {}
+Meme::Meme(const string& name, const string& filename, const string& text1, const string& text2): name(name), filename(filename), text1(text1), text2(text2) {}
 
 Image Meme::render() {
   Image image(filename);
@@ -51,3 +51,35 @@ Image Meme::render() {
 
   return image;
 }
+
+string Meme::getName() {
+  return name;
+}
+
+FryMeme::FryMeme(const string& text1, const string& text2) : Meme(name, filename, text1, text2) {}
+std::string FryMeme::filename = "templates/fry.png";
+std::string FryMeme::name = "fry";
+
+ArielMeme::ArielMeme(const string& text1, const string& text2) : Meme(name, filename, text1, text2) {}
+std::string ArielMeme::filename = "templates/ariel.jpg";
+std::string ArielMeme::name = "ariel";
+
+PhilosoraptorMeme::PhilosoraptorMeme(const string& text1, const string& text2) : Meme(name, filename, text1, text2) {}
+std::string PhilosoraptorMeme::filename = "templates/philosoraptor.jpg";
+std::string PhilosoraptorMeme::name = "philosoraptor";
+
+YUNOMeme::YUNOMeme(const string& text1, const string& text2) : Meme(name, filename, text1, text2) {}
+std::string YUNOMeme::filename = "templates/yuno.png";
+std::string YUNOMeme::name = "yuno";
+
+AnonWifeMeme::AnonWifeMeme(const string& text1, const string& text2) : Meme(name, filename, text1, text2) {}
+std::string AnonWifeMeme::filename = "templates/anonwife.jpg";
+std::string AnonWifeMeme::name = "anonwife";
+
+YaoMeme::YaoMeme(const string& text1, const string& text2) : Meme(name, filename, text1, text2) {}
+std::string YaoMeme::filename = "templates/yaoming.png";
+std::string YaoMeme::name = "yaoming";
+
+KeepCalmMeme::KeepCalmMeme(const string& text1, const string& text2) : Meme(name, filename, text1, text2) {}
+std::string KeepCalmMeme::filename = "templates/keepcalm.jpg";
+std::string KeepCalmMeme::name = "keepcalm";

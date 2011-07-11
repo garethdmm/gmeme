@@ -6,9 +6,7 @@
 
 #include "meme.h"
 
-using namespace std;
-using namespace Magick;
-
+using namespace std; using namespace Magick; 
 int main(int argc, char* argv[]) {
   string memetype("");
   string filetype("png");
@@ -16,7 +14,8 @@ int main(int argc, char* argv[]) {
   string text2("");
 
   if (argc < 4) {
-    cout << "Usage: gmeme {-fry|-ariel|-philosoraptor|-yuno} top_text bottom_text" << endl;
+    cout << "Usage: gmeme {-fry|-ariel|-philosoraptor|-yuno|-wife|-ming(yao)|-calm(keep)} top_text bottom_text" << endl;
+    return 1;
   }
 
   for (int i = 1; i < argc; i++) {
@@ -36,6 +35,10 @@ int main(int argc, char* argv[]) {
         memetype = "yuno";
       } else if (argv[i][1] == 'w') {
         memetype = "anonwife";
+      } else if (argv[i][1] == 'm') {
+        memetype = "yaoming";
+      } else if (argv[i][1] == 'c') {
+        memetype = "keepcalm";
       }
     } else { // handle text strings in here
       text1 = argv[i];
@@ -46,28 +49,26 @@ int main(int argc, char* argv[]) {
     }
   }
 
+  Meme * imageMeme;
+
   if (memetype == "fry") {
-    Meme fry("templates/fry.png", text1, text2);
-    Image fryImage = fry.render();
-    fryImage.write("fry." + filetype);
+    imageMeme = &(FryMeme(text1, text2));
   } else if (memetype == "ariel") {
-    Meme ariel("templates/ariel.jpg", text1, text2);
-    Image arielImage = ariel.render();
-    arielImage.write("ariel." + filetype);
+    imageMeme = &(ArielMeme(text1, text2));
   } else if (memetype == "philosoraptor") {
-    Meme philo("templates/philosoraptor.jpg", text1, text2);
-    Image philoImage = philo.render();
-    philoImage.write("philosoraptor." + filetype);
+    imageMeme = &(PhilosoraptorMeme(text1, text2));
   } else if (memetype == "yuno") {
-    Meme yuno("templates/yuno.png", text1, text2);
-    Image yunoImage = yuno.render();
-    yunoImage.write("yuno." + filetype);
+    imageMeme = &(YUNOMeme(text1, text2));
   } else if (memetype == "anonwife") {
-    Meme wife("templates/anonwife.jpg", text1, text2);
-    Image wifeImage = wife.render();
-    wifeImage.write("wife." + filetype); 
+    imageMeme = &(AnonWifeMeme(text1, text2));
+  } else if (memetype == "yaoming") {
+    imageMeme = &(YaoMeme(text1, text2));
+  } else if (memetype == "keepcalm") {
+    imageMeme = &(KeepCalmMeme(text1, text2));
   }
+
+  Image memeImage = imageMeme->render();
+  memeImage.write(imageMeme->getName() + "." + filetype);
 
   return 1;
 }
-
